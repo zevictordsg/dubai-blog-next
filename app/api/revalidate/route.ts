@@ -1,42 +1,39 @@
-/**
- * Webhook de revalidação — chamado pelo WordPress quando um post é publicado.
- *
- * Configuração no WordPress:
- *  1. Instale o plugin "WP Webhooks" (gratuito)
- *  2. Crie uma ação em: WP Webhooks → Send Data → Post published
- *  3. URL: https://seu-site.vercel.app/api/revalidate?secret=SEU_TOKEN
- *
- * Ou adicione no seu functions.php:
- *   add_action('save_post', function($id) {
- *     if (wp_is_post_revision($id)) return;
- *     $token = 'SEU_TOKEN';
- *     wp_remote_post("https://seu-site.vercel.app/api/revalidate?secret={$token}");
- *   });
- */
-
+import { revalidatePath, revalidateTag } from 'next/cache'
 import { NextRequest, NextResponse } from 'next/server'
-import { revalidatePath }            from 'next/cache'
 
 export async function POST(req: NextRequest) {
   const secret = req.nextUrl.searchParams.get('secret')
 
   if (secret !== process.env.REVALIDATE_SECRET) {
-    return NextResponse.json({ message: 'Token inválido.' }, { status: 401 })
+    return NextResponse.json({ message: 'Invalid token' }, { status: 401 })
   }
 
   try {
-    // Revalida homepage, todas as categorias e o cache geral
-    revalidatePath('/')
-    revalidatePath('/categoria/[slug]', 'page')
-    revalidatePath('/[slug]', 'page')
+    // Revalida todas as páginas principais
+    revalidatePath('/', 'layout')
+    revalidateTag('posts')
+    revalidateTag('categories')
 
-    return NextResponse.json({ revalidated: true, timestamp: new Date().toISOString() })
+    // Revalida o slug específico se enviado pelo webhook
+    const body = await req.json().catch(() => null)
+    if (body?.post_name) {
+      revalidatePath(`/${body.post_name}`)
+    }
+
+    return NextResponse.json({ revalidated: true, now: Date.now() })
   } catch (err) {
-    return NextResponse.json({ message: String(err) }, { status: 500 })
+    return NextResponse.json({ message: 'Error revalidating', err }, { status: 500 })
   }
 }
 
-// Também aceita GET (para testar no browser)
+// GET para testes manuais no browser
 export async function GET(req: NextRequest) {
-  return POST(req)
+  const secret = req.nextUrl.searchParams.get('secret')
+
+  if (secret !== process.env.REVALIDATE_SECRET) {
+    return NextResponse.json({ message: 'Invalid token' }, { status: 401 })
+  }
+
+  revalidatePath('/', 'layout')
+  return NextResponse.json({ revalidated: true, now: Date.now() })
 }

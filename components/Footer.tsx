@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 const WA_NUMBER = '5511999999999'
-const WA_MSG    = encodeURIComponent('Olá! Vi o Dubai Imóveis e quero saber mais sobre investimentos em Dubai.')
+const WA_MSG    = encodeURIComponent('Olá! Encontrei o site da GAP Capital Real Estate e gostaria de saber mais sobre investimentos em Dubai.')
 const WA_HREF   = `https://wa.me/${WA_NUMBER}?text=${WA_MSG}`
 
 const BoltGold = () => (
@@ -62,7 +62,7 @@ export default function Footer() {
             <div className="footer-col-links">
               <a href={WA_HREF} target="_blank" rel="noopener noreferrer">Fale com especialista</a>
               <a href={WA_HREF} target="_blank" rel="noopener noreferrer">WhatsApp</a>
-              <a href="mailto:contato@dubaimoveis.com">E-mail de contato</a>
+              <a href="mailto:contato@gapcapitalrealestate.com.br">E-mail de contato</a>
             </div>
           </div>
 
@@ -73,9 +73,9 @@ export default function Footer() {
           <div className="footer-logo-wrap">
             <div className="footer-logo-mark">
               <BoltGold />
-              <span>Dubai<strong>Imóveis</strong></span>
+              <span>GAP Capital<strong> Real Estate</strong></span>
             </div>
-            <p className="footer-copy">© {year} Dubai Imóveis.</p>
+            <p className="footer-copy">© {year} GAP Capital Real Estate. O capital que transcende.</p>
           </div>
 
           <a

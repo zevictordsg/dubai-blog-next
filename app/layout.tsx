@@ -13,19 +13,19 @@ const BASE = process.env.NEXT_PUBLIC_SITE_URL ?? 'https://dubaimoveis.com'
 
 export const metadata: Metadata = {
   title: {
-    default:  'Dubai Imóveis — Investimento Imobiliário em Dubai para Brasileiros',
-    template: '%s | Dubai Imóveis',
+    default:  'GAP Capital Real Estate — Investimento Imobiliário em Dubai para Brasileiros',
+    template: '%s | GAP Capital Real Estate',
   },
   description:
-    'Guias completos, análises de mercado e estratégias reais para brasileiros investirem em imóveis em Dubai. ROI de 8–12% ao ano, isenção de IR e processo 100% seguro.',
+    'Guias completos, análises de mercado e estratégias reais para brasileiros investirem em imóveis em Dubai. ROI de 8–12% ao ano, isenção de IR e processo 100% seguro. O capital que transcende.',
   keywords: [
-    'imóveis dubai', 'investimento imobiliário dubai', 'comprar imóvel dubai',
-    'roi dubai', 'brasileiros investindo dubai', 'mercado imobiliário dubai',
-    'dubai investimento', 'apartamento dubai', 'freehold dubai',
+    'GAP Capital Real Estate', 'imóveis dubai', 'investimento imobiliário dubai',
+    'comprar imóvel dubai', 'roi dubai', 'brasileiros investindo dubai',
+    'mercado imobiliário dubai', 'dubai investimento', 'apartamento dubai', 'freehold dubai',
   ],
   metadataBase: new URL(BASE),
   openGraph: {
-    siteName:  'Dubai Imóveis',
+    siteName:  'GAP Capital Real Estate',
     locale:    'pt_BR',
     type:      'website',
     url:       BASE,
@@ -33,13 +33,13 @@ export const metadata: Metadata = {
       url:    '/imagens/og-default.webp',
       width:  1200,
       height: 630,
-      alt:    'Dubai Imóveis — Investimento imobiliário em Dubai para brasileiros',
+      alt:    'GAP Capital Real Estate — Investimento imobiliário em Dubai para brasileiros',
     }],
   },
   twitter: {
     card:        'summary_large_image',
-    site:        '@dubaimoveis',
-    creator:     '@dubaimoveis',
+    site:        '@gapcapitalre',
+    creator:     '@gapcapitalre',
   },
   robots: {
     index:              true,
@@ -56,7 +56,7 @@ export const metadata: Metadata = {
     canonical:  BASE,
     languages: { 'pt-BR': BASE },
   },
-  authors:   [{ name: 'Equipe Dubai Imóveis', url: `${BASE}/sobre` }],
+  authors:   [{ name: 'Equipe GAP Capital Real Estate', url: `${BASE}/sobre` }],
   category:  'Investimento imobiliário',
   verification: {
     // google: 'SEU_GOOGLE_SEARCH_CONSOLE_TOKEN',
@@ -70,11 +70,11 @@ const jsonLdOrg = {
     {
       '@type':       'Organization',
       '@id':         `${BASE}/#organization`,
-      name:          'Dubai Imóveis',
+      name:          'GAP Capital Real Estate',
       url:           BASE,
       logo: {
         '@type':     'ImageObject',
-        url:         `${BASE}/imagens/logo2.webp`,
+        url:         `${BASE}/imagens/logo.svg`,
       },
       sameAs: [],
     },
@@ -82,8 +82,8 @@ const jsonLdOrg = {
       '@type':         'WebSite',
       '@id':           `${BASE}/#website`,
       url:             BASE,
-      name:            'Dubai Imóveis',
-      description:     'O guia completo para brasileiros investirem no mercado imobiliário de Dubai.',
+      name:            'GAP Capital Real Estate',
+      description:     'O capital que transcende. Guia completo para brasileiros investirem no mercado imobiliário de Dubai.',
       publisher:       { '@id': `${BASE}/#organization` },
       inLanguage:      'pt-BR',
       potentialAction: {

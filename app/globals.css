@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Baskervville+SC:ital@0;1&family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Work+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;1,300;1,400&family=Roboto:ital,wght@0,300;0,400;0,500;1,300;1,400&display=swap');
 
 /* ── Scrollbar personalizada ─────────────────────────────────────────────── */
 html { scroll-behavior: smooth; }
@@ -6,26 +6,27 @@ html { scroll-behavior: smooth; }
 ::-webkit-scrollbar         { width: 6px; }
 ::-webkit-scrollbar-track   { background: var(--footer-bg, #0b0b0b); }
 ::-webkit-scrollbar-thumb   { background: var(--gold); border-radius: 3px; }
-::-webkit-scrollbar-thumb:hover { background: #d4a200; }
+::-webkit-scrollbar-thumb:hover { background: var(--gold-h); }
 /* Firefox */
-* { scrollbar-width: thin; scrollbar-color: var(--gold, #e5af00) #0b0b0b; }
+* { scrollbar-width: thin; scrollbar-color: var(--gold, #C27C36) var(--footer-bg, #191007); }
 
 /* ============================================================
    DESIGN TOKENS
    ============================================================ */
 :root {
-  --gold:       #e5af00;
-  --gold-h:     #d4a000;
-  --dark:       #161616;
-  --bg:         #f9f9f9;
-  --footer-bg:  #0b0b0b;
-  --card-dark:  #111;
+  /* GAP Capital — Identidade Visual */
+  --gold:       #C27C36;   /* âmbar: CTAs, destaques, eyebrows */
+  --gold-h:     #a86828;   /* âmbar hover */
+  --dark:       #191007;   /* marrom escuro GAP (quase preto, mas quente) */
+  --bg:         #F2ECE9;   /* off-white areia GAP (fundo de página) */
+  --footer-bg:  #191007;   /* rodapé = mesma cor escura da marca */
+  --card-dark:  #191007;   /* cards escuros = brand dark */
   --green:      #3aa749;
-  --text:       #161616;
-  --text-muted: rgba(22,22,22,.55);
-  --border:     rgba(22,22,22,.09);
-  --nav-bg:     rgba(24,24,24,.65);
-  --nav-border: rgba(255,255,255,.09);
+  --text:       #191007;
+  --text-muted: #9E8773;   /* marrom areia médio */
+  --border:     rgba(25,16,7,.1);
+  --nav-bg:     rgba(25,16,7,.78);   /* pill nav: marrom escuro translúcido */
+  --nav-border: rgba(255,255,255,.1);
 
   --r-card:  24px;
   --r-btn:   48px;
@@ -34,8 +35,8 @@ html { scroll-behavior: smooth; }
   --container: 1200px;
   --pad-x: 116px;   /* padrão: laptop e abaixo */
 
-  --font-sans:  'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-  --font-serif: 'Baskervville SC', Georgia, serif;
+  --font-sans:  'Roboto', -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  --font-serif: 'Work Sans', -apple-system, BlinkMacSystemFont, sans-serif;
 
   --ease: cubic-bezier(.16, 1, .3, 1);
 }
@@ -186,7 +187,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
   font-size: clamp(13px, 0.9vw, 16px);
   line-height: 1.55;
   letter-spacing: -.01em;
-  color: rgba(22,22,22,.6);
+  color: rgba(25,16,7,.6);
 }
 
 /* ============================================================
@@ -208,8 +209,8 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 .btn:hover { opacity: .85; transform: translateY(-1px); }
 .btn:active { transform: translateY(0); }
 
-.btn-gold    { background: var(--gold); color: rgba(24,24,24,.85); }
-.btn-white   { background: #fff; color: rgba(24,24,24,.85); }
+.btn-gold    { background: var(--gold); color: rgba(25,16,7,.85); }
+.btn-white   { background: #fff; color: rgba(25,16,7,.85); }
 .btn-green   { background: var(--green); color: #fff; }
 .btn-outline { background: transparent; border: 2px solid var(--border); color: var(--text); }
 
@@ -272,7 +273,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 .nav-links a {
   font-size: 14px;
   font-weight: 500;
-  color: var(--gold);
+  color: #EAC8AC;   /* areia GAP — boa leitura sobre fundo escuro do pill */
   opacity: .7;
   letter-spacing: -.02em;
   transition: opacity .2s;
@@ -286,13 +287,13 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
   gap: 4px;
   font-size: 14px;
   font-weight: 700;
-  color: var(--gold);
+  color: #EAC8AC;
 }
 .nav-dot-active::before {
   content: '';
   width: 5px; height: 5px;
   border-radius: 50%;
-  background: var(--gold);
+  background: #EAC8AC;
   flex-shrink: 0;
 }
 
@@ -303,14 +304,14 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
   gap: 16px;
   position: fixed;
   top: 76px; left: 16px; right: 16px;
-  background: rgba(12,12,12,.97);
+  background: rgba(25,16,7,.97);
   border-radius: 20px;
   border: 1px solid var(--nav-border);
   padding: 24px;
   z-index: 999;
 }
 .nav-drawer.open { display: flex; }
-.nav-drawer a { font-size: 18px; font-weight: 500; color: var(--gold); opacity: .85; }
+.nav-drawer a { font-size: 18px; font-weight: 500; color: #EAC8AC; opacity: .85; }
 
 .nav-toggle {
   display: none;
@@ -322,7 +323,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 .nav-toggle span {
   display: block;
   width: 22px; height: 2px;
-  background: var(--gold);
+  background: #EAC8AC;   /* areia sobre fundo escuro do pill */
   border-radius: 2px;
   transition: transform .3s, opacity .3s;
 }
@@ -362,9 +363,9 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
   position: absolute;
   inset: 0;
   background: linear-gradient(90deg,
-    rgba(249,249,249,1) 30%,
-    rgba(249,249,249,.7) 50%,
-    rgba(249,249,249,0) 68%
+    rgba(242,236,233,1) 30%,
+    rgba(242,236,233,.7) 50%,
+    rgba(242,236,233,0) 68%
   );
   pointer-events: none;
   z-index: 1;
@@ -438,8 +439,8 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 
 .lead-input {
   flex: 1;
-  background: rgba(22,22,22,.05);
-  border: 2px solid rgba(22,22,22,.08);
+  background: rgba(25,16,7,.05);
+  border: 2px solid rgba(25,16,7,.08);
   border-radius: 12px;
   padding: 12px 20px;
   font-size: 16px;
@@ -448,7 +449,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
   min-width: 0;
   transition: border-color .2s;
 }
-.lead-input::placeholder { color: rgba(22,22,22,.3); font-weight: 600; }
+.lead-input::placeholder { color: rgba(25,16,7,.3); font-weight: 600; }
 .lead-input:focus { outline: none; border-color: var(--gold); }
 
 /* ============================================================
@@ -574,7 +575,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
   display: flex; flex-direction: column;
   border-radius: var(--r-card);
   overflow: hidden;
-  background: #e9e9e9;
+  background: #EDE8E3;
 }
 
 /* Altura fixa no container → Next.js Image fill funciona corretamente */
@@ -583,9 +584,9 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 .card-plain:hover .card-plain-img img { transform: scale(1.04); }
 
 .card-plain-body  { padding: 20px; display: flex; flex-direction: column; gap: 14px; flex-shrink: 0; }
-.card-plain-cat   { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: rgba(22,22,22,.4); line-height: 1.4; }
+.card-plain-cat   { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: rgba(25,16,7,.4); line-height: 1.4; }
 .card-plain-title { font-size: clamp(14px, 1.1vw, 17px); font-weight: 600; color: var(--dark); line-height: 1.4; letter-spacing: -.02em; }
-.card-plain-date  { font-size: 11px; font-weight: 600; color: rgba(22,22,22,.35); letter-spacing: .02em; }
+.card-plain-date  { font-size: 11px; font-weight: 600; color: rgba(25,16,7,.35); letter-spacing: .02em; }
 
 /* ── CardVendasLarge — full-width 580px, Figma: Vendas featured ─────────── */
 .card-vendas-lg {
@@ -677,7 +678,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 .card-list-body      { display: flex; flex-direction: column; gap: 8px; flex: 1; min-width: 0; justify-content: center; }
 .card-list-cat       { font-size: 11px; font-weight: 600; letter-spacing: .06em; text-transform: uppercase; color: var(--text-muted); }
 .card-list-title     { font-size: clamp(14px, 1.1vw, 16px); font-weight: 600; color: var(--dark); line-height: 1.4; letter-spacing: -.02em; }
-.card-list-date-text { font-size: 11px; font-weight: 600; color: rgba(22,22,22,.4); letter-spacing: .02em; }
+.card-list-date-text { font-size: 11px; font-weight: 600; color: rgba(25,16,7,.4); letter-spacing: .02em; }
 
 /* ============================================================
    GRIDS
@@ -1171,7 +1172,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 .testimonial-avatar {
   width: 38px; height: 38px;
   border-radius: 50%;
-  background: rgba(229,175,0,.12);
+  background: rgba(194,124,54,.12);
   color: var(--gold);
   font-weight: 700;
   font-size: 14px;
@@ -1441,7 +1442,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 }
 .article-author-avatar {
   width: 56px; height: 56px; border-radius: 50%;
-  background: rgba(229,175,0,.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+  background: rgba(194,124,54,.12); display: flex; align-items: center; justify-content: center; flex-shrink: 0;
 }
 .article-author-name { font-size: 16px; font-weight: 700; color: var(--dark); margin-bottom: 6px; }
 .article-author-bio  { font-size: 14px; line-height: 1.6; color: var(--text-muted); }
@@ -1464,6 +1465,6 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 .legal-updated { font-size: 15px; color: var(--text-muted); }
 .legal-body { display: flex; flex-direction: column; gap: 40px; max-width: 780px; }
 .legal-section h2 { font-size: clamp(18px, 2vw, 24px); font-weight: 600; color: var(--dark); letter-spacing: -.02em; margin-bottom: 16px; }
-.legal-section p { font-size: 17px; line-height: 1.7; color: rgba(22,22,22,.75); margin-bottom: 12px; }
+.legal-section p { font-size: 17px; line-height: 1.7; color: rgba(25,16,7,.75); margin-bottom: 12px; }
 .legal-section ul { padding-left: 20px; display: flex; flex-direction: column; gap: 8px; }
-.legal-section li { font-size: 17px; line-height: 1.7; color: rgba(22,22,22,.75); }
+.legal-section li { font-size: 17px; line-height: 1.7; color: rgba(25,16,7,.75); }

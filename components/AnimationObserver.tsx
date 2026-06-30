@@ -37,7 +37,14 @@ export default function AnimationObserver() {
 
     els.forEach((el) => observer.observe(el))
 
-    return () => observer.disconnect()
+    // Fallback: se JS demorar ou IntersectionObserver não disparar dentro de 3.5s,
+    // mostra todos os elementos de uma vez (evita conteúdo invisível em refresh lento)
+    const fallback = setTimeout(() => els.forEach(show), 3500)
+
+    return () => {
+      observer.disconnect()
+      clearTimeout(fallback)
+    }
   }, [])
 
   return null

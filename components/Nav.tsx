@@ -37,7 +37,7 @@ export default function Nav({ categories, currentPath = '' }: NavProps) {
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
               src="/imagens/logo.svg"
-              alt="Dubai Imóveis"
+              alt="GAP Capital Real Estate"
               height={26}
               style={{ height: 26, width: 'auto', display: 'block' }}
             />
