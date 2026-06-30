@@ -1,5 +1,8 @@
 import Link from 'next/link'
 import { getAdminPosts, getAdminCategories, getLeads } from '@/lib/wp-admin'
+import SeedButton from './SeedButton'
+
+export const dynamic = 'force-dynamic'
 
 export default async function DashboardPage() {
   const [posts, cats, leads] = await Promise.allSettled([
@@ -31,6 +34,7 @@ export default async function DashboardPage() {
           <div className="adm-topbar-title">Dashboard</div>
         </div>
         <div className="adm-topbar-actions">
+          <SeedButton />
           <Link href="/admin/posts/novo" className="adm-btn adm-btn-primary adm-btn-sm">
             + Novo post
           </Link>
@@ -71,8 +75,9 @@ export default async function DashboardPage() {
               <div className="adm-empty">
                 <div className="adm-empty-icon">✦</div>
                 <div className="adm-empty-title">Nenhum post ainda</div>
-                <div style={{ marginTop: 12 }}>
+                <div style={{ marginTop: 12, display: 'flex', gap: 10, justifyContent: 'center', flexWrap: 'wrap' }}>
                   <Link href="/admin/posts/novo" className="adm-btn adm-btn-primary adm-btn-sm">Criar primeiro post</Link>
+                  <SeedButton />
                 </div>
               </div>
             ) : (
