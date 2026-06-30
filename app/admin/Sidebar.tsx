@@ -7,12 +7,13 @@ const NAV = [
   {
     label: 'Principal',
     items: [
-      { href: '/admin/dashboard',   label: 'Dashboard',   icon: '◈' },
+      { href: '/admin/dashboard',   label: 'Dashboard',   icon: '⊞' },
     ],
   },
   {
     label: 'Conteúdo',
     items: [
+      { href: '/admin/home',        label: 'Home',        icon: '◈' },
       { href: '/admin/posts',       label: 'Posts',       icon: '✦' },
       { href: '/admin/categorias',  label: 'Categorias',  icon: '◉' },
       { href: '/admin/midia',       label: 'Mídia',       icon: '⬡' },
