@@ -118,14 +118,17 @@ export async function uploadMedia(buffer: ArrayBuffer, filename: string, mimeTyp
   const pass = process.env.WP_APP_PASSWORD ?? ''
   const auth = 'Basic ' + Buffer.from(`${user}:${pass}`).toString('base64')
 
+  // Node.js fetch precisa de Buffer, não ArrayBuffer
+  const nodeBuffer = Buffer.from(buffer)
+
   const res = await fetch(`${WP_BASE}/media`, {
     method: 'POST',
     headers: {
       'Authorization':        auth,
       'Content-Type':         mimeType,
-      'Content-Disposition':  `attachment; filename="${filename}"`,
+      'Content-Disposition':  `attachment; filename="${encodeURIComponent(filename)}"`,
     },
-    body: buffer,
+    body: nodeBuffer,
     cache: 'no-store',
   })
 

@@ -1,6 +1,10 @@
 import { NextRequest, NextResponse } from 'next/server'
 import { getAdminMedia, uploadMedia } from '@/lib/wp-admin'
 
+// Aumenta o limite de upload para 10 MB
+export const maxDuration = 30
+export const dynamic = 'force-dynamic'
+
 export async function GET() {
   try {
     const media = await getAdminMedia()

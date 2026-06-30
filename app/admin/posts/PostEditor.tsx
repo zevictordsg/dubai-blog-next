@@ -71,12 +71,12 @@ export default function PostEditor({ post, categories }: Props) {
     const fd = new FormData()
     fd.append('file', file)
     const res = await fetch('/api/admin/media', { method: 'POST', body: fd })
+    const data = await res.json()
     if (res.ok) {
-      const media = await res.json()
-      setFeatMedia(media.id)
-      setFeatUrl(media.source_url)
+      setFeatMedia(data.id)
+      setFeatUrl(data.source_url)
     } else {
-      showToast('Erro ao fazer upload da imagem.', 'error')
+      showToast(`Erro no upload: ${data.message ?? res.status}`, 'error')
     }
   }
 
