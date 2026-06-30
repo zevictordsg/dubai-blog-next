@@ -7,8 +7,9 @@ const nextConfig = {
   images: {
     // Domínios permitidos para Next.js Image Optimization
     remotePatterns: [
-      // WordPress headless (subdomínios de dubaimoveis.com)
-      { protocol: 'https', hostname: '**.dubaimoveis.com' },
+      // WordPress headless CMS
+      { protocol: 'https', hostname: 'cms.gapcapitalrealestate.com.br' },
+      { protocol: 'http',  hostname: 'cms.gapcapitalrealestate.com.br' },
       // CDN / uploads do WordPress em domínio próprio
       { protocol: 'https', hostname: '**.wordpress.com' },
       // Durante desenvolvimento local
@@ -46,8 +47,8 @@ const nextConfig = {
     return [
       {
         source:      '/:path*',
-        has:         [{ type: 'host', value: 'www.dubaimoveis.com' }],
-        destination: 'https://dubaimoveis.com/:path*',
+        has:         [{ type: 'host', value: 'www.gapcapitalrealestate.com.br' }],
+        destination: 'https://gapcapitalrealestate.com.br/:path*',
         permanent:   true,
       },
     ]
