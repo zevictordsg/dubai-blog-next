@@ -151,7 +151,7 @@ export async function getAllPostSlugs(): Promise<string[]> {
 
 /** Fetch all categories */
 export async function getCategories(): Promise<WPCategory[]> {
-  const cats = await wpFetch<WPCategory[]>('/categories?per_page=50&hide_empty=true')
+  const cats = await wpFetch<WPCategory[]>('/categories?per_page=50&hide_empty=false')
   return cats
 }
 
