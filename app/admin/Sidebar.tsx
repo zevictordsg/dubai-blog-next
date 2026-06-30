@@ -44,17 +44,23 @@ export default function AdminSidebar() {
       <nav className="adm-nav">
         {NAV.map(({ label, items }) => (
           <div key={label}>
-            <div className="adm-nav-label">{label}</div>
-            {items.map(({ href, label: lbl, icon }) => (
-              <Link
-                key={href}
-                href={href}
-                className={`adm-nav-link${path.startsWith(href) ? ' active' : ''}`}
-              >
-                <span style={{ fontSize: 14 }}>{icon}</span>
-                {lbl}
-              </Link>
-            ))}
+            <div className="adm-nav-label" style={{ color: 'rgba(234,200,172,0.55)' }}>{label}</div>
+            {items.map(({ href, label: lbl, icon }) => {
+              const isActive = path.startsWith(href)
+              return (
+                <Link
+                  key={href}
+                  href={href}
+                  className={`adm-nav-link${isActive ? ' active' : ''}`}
+                  style={{
+                    color: isActive ? '#EAC8AC' : 'rgba(234,200,172,0.88)',
+                  }}
+                >
+                  <span style={{ fontSize: 14 }}>{icon}</span>
+                  {lbl}
+                </Link>
+              )
+            })}
           </div>
         ))}
       </nav>
@@ -63,7 +69,7 @@ export default function AdminSidebar() {
         <button
           onClick={logout}
           className="adm-nav-link"
-          style={{ width: '100%', background: 'none', border: 'none', textAlign: 'left' }}
+          style={{ width: '100%', background: 'none', border: 'none', textAlign: 'left', color: 'rgba(234,200,172,0.75)' }}
         >
           <span style={{ fontSize: 14 }}>↪</span>
           Sair

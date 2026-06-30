@@ -44,6 +44,15 @@
   top: 0; bottom: 0; left: 0;
   z-index: 100;
   overflow-y: auto;
+  /* Define cor base para toda a sidebar — garante que `a { color: inherit }`
+     do globals.css não puxe o #191007 escuro do body */
+  color: #EAC8AC;
+}
+
+/* Garante que todos os links da sidebar herdem a cor clara */
+.adm-sidebar a,
+.adm-sidebar button {
+  color: #EAC8AC !important;
 }
 
 .adm-logo {
@@ -79,7 +88,7 @@
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: rgba(234,200,172,.5);
+  color: rgba(234,200,172,.65) !important;
   padding: 12px 12px 6px;
 }
 
