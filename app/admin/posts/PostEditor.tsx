@@ -22,6 +22,8 @@ export default function PostEditor({ post, categories }: Props) {
   const [featUrl,   setFeatUrl]   = useState(
     post?._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? ''
   )
+  const [sticky,    setSticky]    = useState(post?.sticky ?? false)
+  const [audioUrl,  setAudioUrl]  = useState(post?.meta?.dubai_audio_file ?? '')
   const [saving,    setSaving]    = useState(false)
   const [toast,     setToast]     = useState('')
   const [toastType, setToastType] = useState<'success'|'error'>('success')
@@ -92,6 +94,11 @@ export default function PostEditor({ post, categories }: Props) {
       status:         publishNow ? 'publish' : status,
       categories:     catIds,
       featured_media: featMedia || undefined,
+      sticky:         sticky,
+      meta: {
+        dubai_audio_file:  audioUrl || '',
+        dubai_audio_title: title    || '',
+      },
     }
 
     const url    = post ? `/api/admin/posts/${post.id}` : '/api/admin/posts'
@@ -262,6 +269,55 @@ export default function PostEditor({ post, categories }: Props) {
                     <span style={{ fontSize: 11, color: 'var(--adm-muted)' }}>({c.count})</span>
                   </label>
                 ))}
+              </div>
+            )}
+          </div>
+
+          {/* Posição na home */}
+          <div className="adm-card adm-card-body">
+            <div style={{ fontWeight: 700, marginBottom: 12, fontSize: 15 }}>Posição na Home</div>
+            <label style={{ display: 'flex', alignItems: 'flex-start', gap: 10, cursor: 'pointer' }}>
+              <input
+                type="checkbox"
+                checked={sticky}
+                onChange={e => setSticky(e.target.checked)}
+                style={{ marginTop: 3, accentColor: 'var(--adm-amber)', width: 16, height: 16 }}
+              />
+              <div>
+                <div style={{ fontSize: 14, fontWeight: 600, color: 'var(--adm-text)' }}>
+                  Fixar como destaque principal
+                </div>
+                <div style={{ fontSize: 12, color: 'var(--adm-muted)', marginTop: 3, lineHeight: 1.5 }}>
+                  Aparece no card grande no topo da home. Só um post pode ser destaque por vez.
+                </div>
+              </div>
+            </label>
+            <div style={{ marginTop: 14, padding: '10px 12px', background: 'var(--adm-bg)', borderRadius: 8, fontSize: 12, color: 'var(--adm-muted)', lineHeight: 1.7 }}>
+              <strong style={{ color: 'var(--adm-text)', display: 'block', marginBottom: 4 }}>Como os posts aparecem:</strong>
+              ◈ <strong>Destaque</strong> — marcado acima (1 post)<br/>
+              ◉ <strong>Overlay</strong> — 2 posts mais recentes<br/>
+              ✦ <strong>Cards</strong> — próximos 4 posts<br/>
+              ⬡ <strong>Lista</strong> — demais posts<br/>
+              ◎ <strong>Vendas</strong> — categoria "Vendas"
+            </div>
+          </div>
+
+          {/* Áudio */}
+          <div className="adm-card adm-card-body">
+            <div style={{ fontWeight: 700, marginBottom: 6, fontSize: 15 }}>Áudio do Artigo</div>
+            <div style={{ fontSize: 12, color: 'var(--adm-muted)', marginBottom: 10, lineHeight: 1.5 }}>
+              Cole a URL do arquivo MP3. Aparece como player no início do artigo.
+            </div>
+            <input
+              type="url"
+              className="adm-input"
+              placeholder="https://exemplo.com/audio.mp3"
+              value={audioUrl}
+              onChange={e => setAudioUrl(e.target.value)}
+            />
+            {audioUrl && (
+              <div style={{ marginTop: 10 }}>
+                <audio controls src={audioUrl} style={{ width: '100%', height: 36 }} />
               </div>
             )}
           </div>

@@ -47,6 +47,8 @@ export interface WPAdminPost {
   featured_media: number
   categories:    number[]
   tags:          number[]
+  sticky:        boolean
+  meta?:         { dubai_audio_file?: string; dubai_audio_title?: string }
   _embedded?:    { 'wp:featuredmedia'?: { source_url: string; alt_text: string }[] }
 }
 

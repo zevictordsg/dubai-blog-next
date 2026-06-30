@@ -76,13 +76,17 @@ export default async function HomePage() {
   let posts       = PLACEHOLDER_POSTS
   let vendasPosts = PLACEHOLDER_VENDAS_POSTS
 
+  let stickyPost: typeof posts[0] | null = null
+
   try {
     const wpUrl = process.env.NEXT_PUBLIC_WP_URL
     if (wpUrl) {
-      const [mainData, vendasCat] = await Promise.all([
+      const [stickyData, mainData, vendasCat] = await Promise.all([
+        getPosts({ perPage: 1, sticky: true }),
         getPosts({ perPage: 14 }),
         getCategoryBySlug('vendas'),
       ])
+      if (stickyData.posts.length) stickyPost = stickyData.posts[0]
       if (mainData.posts.length) posts = mainData.posts
       if (vendasCat) {
         const vd = await getPosts({ category: vendasCat.id, perPage: 4 })
@@ -91,7 +95,10 @@ export default async function HomePage() {
     }
   } catch { /* use fallbacks */ }
 
-  const latestPosts = posts.slice(0, 14)
+  // Se tem post fixado, ele vai na frente; os demais preenchem o resto
+  const latestPosts = stickyPost
+    ? [stickyPost, ...posts.filter(p => p.id !== stickyPost!.id)].slice(0, 14)
+    : posts.slice(0, 14)
   const [featured, ...rest] = latestPosts
   const overlayPosts = rest.slice(0, 2)
   const plainPosts   = rest.slice(2, 6)   // 4 cards agora

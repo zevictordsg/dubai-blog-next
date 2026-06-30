@@ -14,7 +14,7 @@ export default function PostActions({ id, status, slug }: { id: number; status: 
   }
 
   return (
-    <div style={{ display: 'flex', gap: 6 }}>
+    <div style={{ display: 'flex', gap: 6, flexWrap: 'wrap' }}>
       <Link href={`/admin/posts/${id}/editar`} className="adm-btn adm-btn-ghost adm-btn-sm">
         Editar
       </Link>
@@ -25,11 +25,15 @@ export default function PostActions({ id, status, slug }: { id: number; status: 
           rel="noopener"
           className="adm-btn adm-btn-ghost adm-btn-sm"
         >
-          Ver
+          Ver →
         </a>
       )}
-      <button onClick={handleDelete} className="adm-btn adm-btn-sm" style={{ background: 'rgba(220,53,69,.1)', color: '#dc3545' }}>
-        ✕
+      <button
+        onClick={handleDelete}
+        className="adm-btn adm-btn-sm"
+        style={{ background: 'rgba(220,53,69,.12)', color: '#dc3545', border: '1px solid rgba(220,53,69,.25)', fontWeight: 600 }}
+      >
+        Excluir
       </button>
     </div>
   )

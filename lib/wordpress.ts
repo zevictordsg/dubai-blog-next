@@ -112,15 +112,17 @@ async function wpFetch<T>(path: string): Promise<T> {
 
 /** Fetch multiple posts */
 export async function getPosts(params?: {
-  perPage?: number
-  page?:    number
+  perPage?:  number
+  page?:     number
   category?: number
-  search?:  string
+  search?:   string
+  sticky?:   boolean
 }): Promise<{ posts: WPPost[]; total: number; totalPages: number }> {
-  const { perPage = 10, page = 1, category, search } = params ?? {}
+  const { perPage = 10, page = 1, category, search, sticky } = params ?? {}
   let qs = `?per_page=${perPage}&page=${page}${EMBED}${FIELDS}`
-  if (category) qs += `&categories=${category}`
-  if (search)   qs += `&search=${encodeURIComponent(search)}`
+  if (category)          qs += `&categories=${category}`
+  if (search)            qs += `&search=${encodeURIComponent(search)}`
+  if (sticky !== undefined) qs += `&sticky=${sticky ? 1 : 0}`
 
   const res = await fetch(`${API}/posts${qs}`, { next: { revalidate: 3600 } })
   if (!res.ok) {
