@@ -30,7 +30,7 @@ export async function POST() {
     })
 
     // 3. Criar categorias que ainda não existem no WordPress
-    for (const [slug, { name }] of uniqueCats) {
+    for (const [slug, { name }] of Array.from(uniqueCats)) {
       if (!catMap.has(slug)) {
         try {
           const created = await createCategory(name, slug)
