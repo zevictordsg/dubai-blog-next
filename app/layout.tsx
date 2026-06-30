@@ -1,7 +1,7 @@
 import type { Metadata } from 'next'
 import './globals.css'
-import Nav               from '@/components/Nav'
-import Footer            from '@/components/Footer'
+import NavWrapper        from '@/components/NavWrapper'
+import FooterWrapper     from '@/components/FooterWrapper'
 import AnimationObserver from '@/components/AnimationObserver'
 import BackToTop         from '@/components/BackToTop'
 import {
@@ -121,9 +121,9 @@ export default async function RootLayout({ children }: { children: React.ReactNo
         {/* Skip to content — acessibilidade */}
         <a href="#main-content" className="skip-link">Pular para o conteúdo</a>
         <AnimationObserver />
-        <Nav categories={categories} />
+        <NavWrapper categories={categories} />
         <main id="main-content">{children}</main>
-        <Footer />
+        <FooterWrapper />
         <BackToTop />
       </body>
     </html>
