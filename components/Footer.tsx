@@ -71,10 +71,12 @@ export default function Footer() {
         {/* ── Rodapé inferior: logo-mark + CTA ───────────────────────────── */}
         <div className="footer-bottom">
           <div className="footer-logo-wrap">
-            <div className="footer-logo-mark">
-              <BoltGold />
-              <span>GAP Capital<strong> Real Estate</strong></span>
-            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src="/imagens/logocerta.svg"
+              alt="GAP Capital Real Estate"
+              style={{ height: 40, width: 'auto', display: 'block', marginBottom: 8 }}
+            />
             <p className="footer-copy">© {year} GAP Capital Real Estate. O capital que transcende.</p>
           </div>
 

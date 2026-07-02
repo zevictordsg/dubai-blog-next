@@ -36,10 +36,10 @@ export default function Nav({ categories, currentPath = '' }: NavProps) {
           <Link href="/" className="nav-logo" onClick={() => setOpen(false)}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/imagens/logo.svg"
+              src="/imagens/logohorizontal.svg"
               alt="GAP Capital Real Estate"
-              height={26}
-              style={{ height: 26, width: 'auto', display: 'block' }}
+              height={28}
+              style={{ height: 28, width: 'auto', display: 'block' }}
             />
           </Link>
 

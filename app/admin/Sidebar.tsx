@@ -38,8 +38,13 @@ export default function AdminSidebar() {
   return (
     <aside className="adm-sidebar">
       <div className="adm-logo">
-        <div className="adm-logo-mark">GAP Capital</div>
-        <div className="adm-logo-sub">Painel de Gestão</div>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src="/imagens/logocerta.svg"
+          alt="GAP Capital Real Estate"
+          style={{ height: 36, width: 'auto', display: 'block', marginBottom: 4 }}
+        />
+        <div className="adm-logo-sub" style={{ color: 'rgba(234,200,172,0.5)', fontSize: 11 }}>Painel de Gestão</div>
       </div>
 
       <nav className="adm-nav">
