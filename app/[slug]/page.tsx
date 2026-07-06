@@ -189,7 +189,7 @@ export default async function ArticlePage({ params }: Props) {
         <section className="audio-section" data-animate>
           <div className="container">
             <div className="audio-header">
-              <h2 className="audio-header-title">{audioTitle}</h2>
+              <h2 className="audio-header-title">Ouça este artigo</h2>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img
                 src="/imagens/logohorizontalescura.svg"
@@ -197,7 +197,7 @@ export default async function ArticlePage({ params }: Props) {
                 style={{ height: 22, width: 'auto', display: 'block', opacity: .7 }}
               />
             </div>
-            <AudioPlayer src={audioSrc} title={audioTitle} />
+            <AudioPlayer src={audioSrc} title="Ouvir áudio da notícia" />
           </div>
         </section>
 
