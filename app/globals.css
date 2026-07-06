@@ -270,6 +270,11 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
   pointer-events: none;
 }
 
+/* Em monitores grandes o --pad-x de 320px comprime o pill — usa padding fixo */
+@media (min-width: 1680px) {
+  .nav-wrap { padding: 20px 48px; }
+}
+
 .nav-inner {
   /* pill preenche exatamente o espaço deixado pelo padding do nav-wrap */
   width: 100%;
@@ -295,16 +300,18 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 16px;
+  flex-wrap: nowrap;
 }
 
 .nav-links a {
-  font-size: 14px;
+  font-size: 13px;
   font-weight: 500;
   color: #EAC8AC;   /* areia GAP — boa leitura sobre fundo escuro do pill */
   opacity: .7;
   letter-spacing: -.02em;
   transition: opacity .2s;
+  white-space: nowrap;
 }
 .nav-links a:hover  { opacity: 1; }
 .nav-links a.active { opacity: 1; font-weight: 700; }
