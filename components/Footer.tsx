@@ -73,9 +73,9 @@ export default function Footer() {
           <div className="footer-logo-wrap">
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
-              src="/imagens/logocerta.svg"
+              src="/imagens/logohorizontal.svg"
               alt="GAP Capital Real Estate"
-              style={{ height: 40, width: 'auto', display: 'block', marginBottom: 8 }}
+              style={{ height: 32, width: 'auto', display: 'block', marginBottom: 8 }}
             />
             <p className="footer-copy">© {year} GAP Capital Real Estate. O capital que transcende.</p>
           </div>

@@ -128,6 +128,23 @@ export default async function HomePage() {
             style={{ objectFit: 'cover', objectPosition: 'center bottom', filter: 'blur(3.5px)' }} priority />
         </div>
         <div className="hero-fade" aria-hidden="true" />
+
+        {/* Bento grid de imagens — lado direito do hero */}
+        <div className="hero-bento" aria-hidden="true">
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <div className="hero-bento-cell hero-bento-tall">
+            <img src="/imagens/dubai4.webp" alt="" />
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <div className="hero-bento-cell">
+            <img src="/imagens/dubai2.webp" alt="" />
+          </div>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <div className="hero-bento-cell">
+            <img src="/imagens/dubai8.webp" alt="" />
+          </div>
+        </div>
+
         <div className="hero-content">
           <div className="hero-text-block">
             <div className="hero-text">
@@ -140,7 +157,7 @@ export default async function HomePage() {
               <p className="body-lg animate-in delay-1" style={{ maxWidth: 520 }}>
                 Guias, análises e conteúdos estratégicos sobre o mercado imobiliário de Dubai, criados para brasileiros que querem entender as oportunidades, os riscos e as regras antes de tomar uma decisão patrimonial.
               </p>
-              <p className="animate-in delay-1" style={{ fontSize: 14, color: 'rgba(234,200,172,.65)', maxWidth: 480 }}>
+              <p className="animate-in delay-1" style={{ fontSize: 14, color: 'var(--text-muted)', maxWidth: 480 }}>
                 Conteúdo por Guilherme Lemos, especialista em investimento imobiliário internacional há mais de 15 anos.
               </p>
             </div>
@@ -148,7 +165,7 @@ export default async function HomePage() {
               <Link href="/categoria/investimento" className="btn btn-gold">
                 Começar pelos guias
               </Link>
-              <a href="#newsletter" className="btn btn-outline" style={{ borderColor: 'rgba(255,255,255,.3)', color: '#fff' }}>
+              <a href="#newsletter" className="btn btn-outline" style={{ borderColor: 'rgba(25,16,7,.25)', color: 'var(--dark)' }}>
                 Receber análises por e-mail
               </a>
             </div>
@@ -170,7 +187,7 @@ export default async function HomePage() {
 
       {/* ══ 3. INTRODUÇÃO CURTA ═══════════════════════════════════════════════ */}
       <section className="section intro-section" aria-label="Introdução">
-        <div className="container intro-inner" data-animate>
+        <div className="container" data-animate>
           <div className="intro-text">
             <p>
               Dubai se tornou um dos mercados internacionais mais observados por investidores que buscam diversificação, patrimônio em moeda forte, segurança e exposição a uma economia global.
