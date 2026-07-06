@@ -1,18 +1,19 @@
 export default function ArticleAuthor() {
   return (
     <div className="article-author">
-      <div className="article-author-avatar">
-        <svg width="32" height="32" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-          <path
-            d="M12 12c2.7 0 4.8-2.1 4.8-4.8S14.7 2.4 12 2.4 7.2 4.5 7.2 7.2 9.3 12 12 12zm0 2.4c-3.2 0-9.6 1.6-9.6 4.8v2.4h19.2v-2.4c0-3.2-6.4-4.8-9.6-4.8z"
-            fill="var(--gold)"
-          />
-        </svg>
+      <div className="article-author-avatar" aria-hidden="true"
+        style={{
+          width: 48, height: 48, borderRadius: '50%',
+          background: 'var(--dark)', color: 'var(--gold)',
+          display: 'flex', alignItems: 'center', justifyContent: 'center',
+          fontSize: 16, fontWeight: 600, letterSpacing: '.03em', flexShrink: 0,
+        }}>
+        GL
       </div>
       <div className="article-author-info">
-        <p className="article-author-name">Equipe Dubai Imóveis</p>
+        <p className="article-author-name">Guilherme Lemos</p>
         <p className="article-author-bio">
-          Jornalistas e especialistas em mercado imobiliário internacional dedicados a ajudar brasileiros a investir com segurança nos Emirados Árabes Unidos.
+          Por Guilherme Lemos, especialista em dolarização de patrimônio por meio de imóveis, com mais de 15 anos ajudando investidores brasileiros a construir renda e patrimônio em moeda forte.
         </p>
       </div>
     </div>

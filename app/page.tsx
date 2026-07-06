@@ -16,7 +16,7 @@ import LeadMagnet     from '@/components/LeadMagnet'
 import HomeNewsletter from '@/components/HomeNewsletter'
 
 export const metadata: Metadata = {
-  title: 'Dubai Imóveis — Investimento Imobiliário em Dubai para Brasileiros',
+  title: 'GAP Capital Real Estate — Investimento Imobiliário em Dubai para Brasileiros',
   description:
     'Guias, análises e conteúdos estratégicos sobre o mercado imobiliário de Dubai para brasileiros que querem entender as oportunidades, os riscos e as regras antes de tomar uma decisão patrimonial.',
   alternates: { canonical: '/' },
@@ -27,9 +27,9 @@ export const revalidate = 3600
 const jsonLdHome = {
   '@context':  'https://schema.org',
   '@type':     'WebPage',
-  name:        'Dubai Imóveis — Investimento Imobiliário em Dubai para Brasileiros',
-  description: 'Blog especializado em mercado imobiliário de Dubai para investidores brasileiros.',
-  url:         'https://dubaimoveis.com',
+  name:        'GAP Capital Real Estate — Investimento Imobiliário em Dubai para Brasileiros',
+  description: 'Blog especializado em mercado imobiliário de Dubai para investidores brasileiros. Por Guilherme Lemos, especialista em dolarização de patrimônio.',
+  url:         'https://gapcapitalrealestate.com.br',
 }
 
 // ── Dados estáticos ───────────────────────────────────────────────────────────
@@ -129,22 +129,6 @@ export default async function HomePage() {
         </div>
         <div className="hero-fade" aria-hidden="true" />
 
-        {/* Bento grid de imagens — lado direito do hero */}
-        <div className="hero-bento" aria-hidden="true">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <div className="hero-bento-cell hero-bento-tall">
-            <img src="/imagens/dubai4.webp" alt="" />
-          </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <div className="hero-bento-cell">
-            <img src="/imagens/dubai2.webp" alt="" />
-          </div>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <div className="hero-bento-cell">
-            <img src="/imagens/dubai8.webp" alt="" />
-          </div>
-        </div>
-
         <div className="hero-content">
           <div className="hero-text-block">
             <div className="hero-text">
@@ -170,6 +154,22 @@ export default async function HomePage() {
               </a>
             </div>
           </div>
+
+          {/* Bento grid de imagens — flui com o texto do hero */}
+          <div className="hero-bento" aria-hidden="true">
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <div className="hero-bento-cell hero-bento-tall">
+              <img src="/imagens/dubai4.webp" alt="" />
+            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <div className="hero-bento-cell">
+              <img src="/imagens/dubai2.webp" alt="" />
+            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <div className="hero-bento-cell">
+              <img src="/imagens/dubai8.webp" alt="" />
+            </div>
+          </div>
         </div>
       </section>
 
@@ -187,23 +187,29 @@ export default async function HomePage() {
 
       {/* ══ 3. INTRODUÇÃO CURTA ═══════════════════════════════════════════════ */}
       <section className="section intro-section" aria-label="Introdução">
-        <div className="container" data-animate>
-          <div className="intro-text">
-            <p>
-              Dubai se tornou um dos mercados internacionais mais observados por investidores que buscam diversificação, patrimônio em moeda forte, segurança e exposição a uma economia global.
-            </p>
-            <p>
-              Mas junto com o crescimento do mercado, também cresceu o ruído: promessas de retorno, comparações superficiais, urgência artificial e informações sem contexto.
-            </p>
-            <p className="intro-highlight">
-              Este blog existe para seguir outro caminho.
-            </p>
-            <p>
-              Aqui, o objetivo é explicar o mercado imobiliário de Dubai com clareza, dados, fontes e visão estratégica — mostrando não apenas as oportunidades, mas também os pontos de atenção que um investidor brasileiro precisa considerar antes de comprar.
-            </p>
-            <p>
-              Porque uma decisão patrimonial internacional não deve ser tomada com pressa. Deve ser tomada com informação.
-            </p>
+        <div className="container">
+          <div className="intro-inner" data-animate>
+            <div className="intro-text">
+              <p>
+                Dubai se tornou um dos mercados internacionais mais observados por investidores que buscam diversificação, patrimônio em moeda forte, segurança e exposição a uma economia global.
+              </p>
+              <p>
+                Mas junto com o crescimento do mercado, também cresceu o ruído: promessas de retorno, comparações superficiais, urgência artificial e informações sem contexto.
+              </p>
+              <p className="intro-highlight">
+                Este blog existe para seguir outro caminho.
+              </p>
+              <p>
+                Aqui, o objetivo é explicar o mercado imobiliário de Dubai com clareza, dados, fontes e visão estratégica — mostrando não apenas as oportunidades, mas também os pontos de atenção que um investidor brasileiro precisa considerar antes de comprar.
+              </p>
+              <p>
+                Porque uma decisão patrimonial internacional não deve ser tomada com pressa. Deve ser tomada com informação.
+              </p>
+            </div>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <div className="intro-image-wrap">
+              <img src="/imagens/dubai5.webp" alt="Vista de Dubai" loading="lazy" />
+            </div>
           </div>
         </div>
       </section>

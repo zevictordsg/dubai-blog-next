@@ -8,6 +8,12 @@ import {
   getPrimaryCategory,
 } from '@/lib/wordpress'
 
+// Fallback image when post has no featured media — cycles through dubai1-10
+function fallbackImg(postId: number) {
+  const n = (Math.abs(postId) % 10) + 1
+  return { source_url: `/imagens/dubai${n}.webp`, alt_text: 'Dubai' }
+}
+
 // ── Shared icons ──────────────────────────────────────────────────────────────
 const ArrowCircle = () => (
   <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
@@ -25,7 +31,7 @@ const Dot = ({ light = false }: { light?: boolean }) => (
 
 // ── CardFeatured — dark horizontal, 493px, Últimas notícias ──────────────────
 export function CardFeatured({ post }: { post: WPPost }) {
-  const img     = getFeaturedImage(post)
+  const img     = getFeaturedImage(post) ?? fallbackImg(post.id)
   const cat     = getPrimaryCategory(post)
   const title   = stripHtml(post.title.rendered)
   const excerpt = stripHtml(post.excerpt.rendered)
@@ -34,10 +40,7 @@ export function CardFeatured({ post }: { post: WPPost }) {
     <Link href={`/${post.slug}`} className="card-featured">
       {/* Left image */}
       <div className="card-featured-img">
-        {img
-          ? <Image src={img.source_url} alt={img.alt_text} fill sizes="(max-width:768px) 100vw, 50vw" style={{ objectFit: 'cover' }} priority />
-          : <div style={{ width: '100%', height: '100%', background: '#333' }} />
-        }
+        <Image src={img.source_url} alt={img.alt_text} fill sizes="(max-width:768px) 100vw, 50vw" style={{ objectFit: 'cover' }} priority />
       </div>
 
       {/* Right body */}
@@ -61,17 +64,14 @@ export function CardFeatured({ post }: { post: WPPost }) {
 
 // ── CardOverlay — 493px, gradient, Últimas notícias 2-col ────────────────────
 export function CardOverlay({ post }: { post: WPPost }) {
-  const img     = getFeaturedImage(post)
+  const img     = getFeaturedImage(post) ?? fallbackImg(post.id)
   const title   = stripHtml(post.title.rendered)
   const excerpt = stripHtml(post.excerpt.rendered)
 
   return (
     <Link href={`/${post.slug}`} className="card-overlay">
       <div className="card-overlay-img">
-        {img
-          ? <Image src={img.source_url} alt={img.alt_text} fill sizes="(max-width:768px) 100vw, 45vw" style={{ objectFit: 'cover' }} />
-          : <div style={{ width: '100%', height: '100%', background: '#222' }} />
-        }
+        <Image src={img.source_url} alt={img.alt_text} fill sizes="(max-width:768px) 100vw, 45vw" style={{ objectFit: 'cover' }} />
       </div>
 
       <div className="card-overlay-body">
@@ -89,7 +89,7 @@ export function CardOverlay({ post }: { post: WPPost }) {
 
 // ── CardPlain — image top + text bottom, Últimas notícias 3-col ─────────────
 export function CardPlain({ post }: { post: WPPost }) {
-  const img   = getFeaturedImage(post)
+  const img   = getFeaturedImage(post) ?? fallbackImg(post.id)
   const cat   = getPrimaryCategory(post)
   const title = stripHtml(post.title.rendered)
 
@@ -97,10 +97,7 @@ export function CardPlain({ post }: { post: WPPost }) {
     <Link href={`/${post.slug}`} className="card-plain">
       {/* Imagem com fill — container tem height: 240px definida no CSS */}
       <div className="card-plain-img">
-        {img
-          ? <Image src={img.source_url} alt={img.alt_text} fill sizes="(max-width:768px) 100vw, 33vw" style={{ objectFit: 'cover' }} />
-          : <div style={{ width: '100%', height: '100%', background: '#e0e0e0' }} />
-        }
+        <Image src={img.source_url} alt={img.alt_text} fill sizes="(max-width:768px) 100vw, 33vw" style={{ objectFit: 'cover' }} />
       </div>
       <div className="card-plain-body">
         <div style={{ display: 'flex', flexDirection: 'column', gap: 12 }}>
@@ -115,17 +112,14 @@ export function CardPlain({ post }: { post: WPPost }) {
 
 // ── CardVendasLarge — 580px full-width overlay (Vendas featured) ─────────────
 export function CardVendasLarge({ post }: { post: WPPost }) {
-  const img   = getFeaturedImage(post)
+  const img   = getFeaturedImage(post) ?? fallbackImg(post.id)
   const cat   = getPrimaryCategory(post)
   const title = stripHtml(post.title.rendered)
 
   return (
     <Link href={`/${post.slug}`} className="card-vendas-lg">
       <div className="card-vendas-img">
-        {img
-          ? <Image src={img.source_url} alt={img.alt_text} fill sizes="100vw" style={{ objectFit: 'cover', objectPosition: 'center' }} />
-          : <div style={{ width: '100%', height: '100%', background: '#222' }} />
-        }
+        <Image src={img.source_url} alt={img.alt_text} fill sizes="100vw" style={{ objectFit: 'cover', objectPosition: 'center' }} />
       </div>
       <div className="card-vendas-lg-gradient" />
       <div className="card-vendas-lg-body">
@@ -144,17 +138,14 @@ export function CardVendasLarge({ post }: { post: WPPost }) {
 
 // ── CardVendasSmall — 493px overlay (Vendas 3-col) ───────────────────────────
 export function CardVendasSmall({ post }: { post: WPPost }) {
-  const img   = getFeaturedImage(post)
+  const img   = getFeaturedImage(post) ?? fallbackImg(post.id)
   const cat   = getPrimaryCategory(post)
   const title = stripHtml(post.title.rendered)
 
   return (
     <Link href={`/${post.slug}`} className="card-vendas-sm">
       <div className="card-vendas-img">
-        {img
-          ? <Image src={img.source_url} alt={img.alt_text} fill sizes="(max-width:768px) 100vw, 33vw" style={{ objectFit: 'cover', objectPosition: 'center bottom' }} />
-          : <div style={{ width: '100%', height: '100%', background: '#222' }} />
-        }
+        <Image src={img.source_url} alt={img.alt_text} fill sizes="(max-width:768px) 100vw, 33vw" style={{ objectFit: 'cover', objectPosition: 'center bottom' }} />
       </div>
       <div className="card-vendas-sm-gradient" />
       <div className="card-vendas-sm-body">
@@ -173,17 +164,14 @@ export function CardVendasSmall({ post }: { post: WPPost }) {
 
 // ── CardList — 192×192 thumb + text, "Mais artigos" ──────────────────────────
 export function CardList({ post }: { post: WPPost }) {
-  const img   = getFeaturedImage(post)
+  const img   = getFeaturedImage(post) ?? fallbackImg(post.id)
   const cat   = getPrimaryCategory(post)
   const title = stripHtml(post.title.rendered)
 
   return (
     <Link href={`/${post.slug}`} className="card-list">
       <div className="card-list-thumb">
-        {img
-          ? <Image src={img.source_url} alt={img.alt_text} fill sizes="192px" style={{ objectFit: 'cover' }} />
-          : <div style={{ width: '100%', height: '100%', background: 'var(--dark)' }} />
-        }
+        <Image src={img.source_url} alt={img.alt_text} fill sizes="192px" style={{ objectFit: 'cover' }} />
       </div>
       <div className="card-list-body">
         <p className="card-list-cat">{cat?.name ?? 'Blog'}</p>
