@@ -1252,9 +1252,6 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 }
 
 .newsletter-inner {
-  max-width: var(--container);
-  margin: 0 auto;
-  padding: 0 var(--pad-x);
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 64px;

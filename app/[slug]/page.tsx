@@ -105,11 +105,11 @@ export default async function ArticlePage({ params }: Props) {
     datePublished: post.date,
     dateModified:  post.modified,
     image: img?.source_url ?? '',
-    author: { '@type': 'Organization', name: 'Dubai Imóveis', url: 'https://dubaimoveis.com' },
+    author: { '@type': 'Person', name: 'Guilherme Lemos', url: 'https://gapcapitalrealestate.com.br/sobre' },
     publisher: {
       '@type': 'Organization',
-      name: 'Dubai Imóveis',
-      logo: { '@type': 'ImageObject', url: 'https://dubaimoveis.com/logo.svg' },
+      name: 'GAP Capital Real Estate',
+      logo: { '@type': 'ImageObject', url: 'https://gapcapitalrealestate.com.br/imagens/logohorizontalescura.svg' },
     },
   }
 
@@ -190,13 +190,12 @@ export default async function ArticlePage({ params }: Props) {
           <div className="container">
             <div className="audio-header">
               <h2 className="audio-header-title">{audioTitle}</h2>
-              <div className="audio-header-brand" style={{ fontFamily: 'var(--font-serif)' }}>
-                <svg width="16" height="19" viewBox="0 0 22 26" fill="none">
-                  <path d="M11 0C11 0 14 6 14 10C14 12.2 12.8 14 11 15.2C11.8 13.5 12 11.8 11.3 10.3C10.4 12.5 8.5 14 6 14C3 14 0 11.5 0 8C0 4 3.5 1 6 0C6 3 7.5 5 9 6C9 3 9.5 1.5 11 0Z" fill="#E5AF00"/>
-                  <path d="M11 14C13.5 15.5 15 18 15 21C15 23.8 13.2 26 11 26C8.8 26 7 23.8 7 21C7 18.5 8.5 16.5 11 14Z" fill="#E5AF00"/>
-                </svg>
-                Dubai Imóveis
-              </div>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/imagens/logohorizontalescura.svg"
+                alt="GAP Capital Real Estate"
+                style={{ height: 22, width: 'auto', display: 'block', opacity: .7 }}
+              />
             </div>
             <AudioPlayer src={audioSrc} title={audioTitle} />
           </div>
