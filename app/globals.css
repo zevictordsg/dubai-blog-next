@@ -1064,7 +1064,7 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 72px;
-  align-items: center;
+  align-items: stretch;   /* ambas as colunas têm a mesma altura */
 }
 
 .intro-text {
@@ -1080,11 +1080,13 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 .intro-image-wrap {
   border-radius: 24px;
   overflow: hidden;
-  aspect-ratio: 4/5;
-  position: relative;
+  position: relative;     /* sem aspect-ratio: a altura vem do texto */
+  min-height: 280px;      /* fallback para quando o texto é muito curto */
 }
 
 .intro-image-wrap img {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
   object-fit: cover;
@@ -1096,7 +1098,11 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
     grid-template-columns: 1fr;
     gap: 32px;
   }
-  .intro-image-wrap { aspect-ratio: 16/9; }
+  .intro-image-wrap {
+    position: relative;
+    aspect-ratio: 16/9;
+    min-height: unset;
+  }
 }
 
 .intro-highlight {
