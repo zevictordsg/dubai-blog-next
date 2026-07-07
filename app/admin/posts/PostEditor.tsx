@@ -133,8 +133,13 @@ export default function PostEditor({ post, categories }: Props) {
     if (res.ok) {
       const saved = await res.json()
       showToast(publishNow ? 'Post publicado!' : 'Rascunho salvo.')
-      if (!post) router.replace(`/admin/posts/${saved.id}/editar`)
-      if (publishNow) setStatus('publish')
+      if (!post) {
+        router.replace(`/admin/posts/${saved.id}/editar`)
+      } else {
+        // Recarrega a página para mostrar o conteúdo atualizado do WordPress
+        router.refresh()
+        if (publishNow) setStatus('publish')
+      }
     } else {
       const err = await res.json().catch(() => ({ message: 'Erro desconhecido' }))
       showToast(err.message ?? 'Erro ao salvar.', 'error')

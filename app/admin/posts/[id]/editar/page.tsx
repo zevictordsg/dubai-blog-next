@@ -2,6 +2,8 @@ import { getAdminPost, getAdminCategories } from '@/lib/wp-admin'
 import PostEditor from '../../PostEditor'
 import { notFound } from 'next/navigation'
 
+export const dynamic = 'force-dynamic'
+
 export default async function EditarPostPage({ params }: { params: { id: string } }) {
   const id = parseInt(params.id, 10)
   if (isNaN(id)) notFound()

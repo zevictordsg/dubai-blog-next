@@ -8,10 +8,13 @@ export async function PUT(req: NextRequest, { params }: { params: { id: string }
     const body = await req.json()
     const post = await updatePost(id, body)
 
-    // Revalida a home e o slug do post imediatamente
-    revalidatePath('/', 'page')
+    // Revalida home, categorias e o artigo específico
+    revalidatePath('/', 'layout')
     revalidatePath('/categoria/[slug]', 'page')
-    if (post.slug) revalidatePath(`/${post.slug}`, 'page')
+    if (post.slug) {
+      revalidatePath(`/${post.slug}`, 'page')
+      revalidatePath(`/${post.slug}`, 'layout')
+    }
 
     return NextResponse.json(post)
   } catch (e) {

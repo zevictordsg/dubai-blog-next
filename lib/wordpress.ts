@@ -135,9 +135,12 @@ export async function getPosts(params?: {
   return { posts, total, totalPages }
 }
 
-/** Fetch a single post by slug */
+/** Fetch a single post by slug — no-store so revalidatePath always hits WP fresh */
 export async function getPostBySlug(slug: string): Promise<WPPost | null> {
-  const posts = await wpFetch<WPPost[]>(`/posts?slug=${slug}${EMBED}${FIELDS}`)
+  const url = `${API}/posts?slug=${slug}${EMBED}${FIELDS}`
+  const res = await fetch(url, { cache: 'no-store' })
+  if (!res.ok) return null
+  const posts = (await res.json()) as WPPost[]
   return posts[0] ?? null
 }
 
