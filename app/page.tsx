@@ -141,7 +141,7 @@ export default async function HomePage() {
               <p className="body-lg animate-in delay-1" style={{ maxWidth: 520 }}>
                 Guias, análises e conteúdos estratégicos sobre o mercado imobiliário de Dubai, criados para brasileiros que querem entender as oportunidades, os riscos e as regras antes de tomar uma decisão patrimonial.
               </p>
-              <p className="animate-in delay-1" style={{ fontSize: 14, color: 'var(--text-muted)', maxWidth: 480 }}>
+              <p className="animate-in delay-1" style={{ fontSize: 14, color: 'rgba(25,16,7,.55)', maxWidth: 480, fontWeight: 500 }}>
                 Conteúdo por Guilherme Lemos, especialista em investimento imobiliário internacional há mais de 15 anos.
               </p>
             </div>

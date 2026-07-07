@@ -1058,8 +1058,17 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 }
 
 @media (max-width: 900px) {
-  .hero-content { grid-template-columns: 1fr; }
-  .hero-bento { display: none; }
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+  .hero-bento {
+    width: 100%;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 140px 140px;
+    gap: 8px;
+  }
+  .hero-bento-tall { grid-row: span 2; }
 }
 
 /* ============================================================
@@ -1529,8 +1538,8 @@ button { border: none; background: none; cursor: pointer; font: inherit; }
 }
 .stat-label {
   font-size: 13px;
-  color: var(--text-muted);
-  font-weight: 500;
+  color: rgba(25,16,7,.6);
+  font-weight: 600;
   letter-spacing: -.01em;
   line-height: 1.4;
 }
