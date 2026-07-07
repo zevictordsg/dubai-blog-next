@@ -22,11 +22,12 @@ export default function PostEditor({ post, categories }: Props) {
   const [featUrl,   setFeatUrl]   = useState(
     post?._embedded?.['wp:featuredmedia']?.[0]?.source_url ?? ''
   )
-  const [sticky,    setSticky]    = useState(post?.sticky ?? false)
-  const [audioUrl,  setAudioUrl]  = useState(post?.meta?.dubai_audio_file ?? '')
-  const [saving,    setSaving]    = useState(false)
-  const [toast,     setToast]     = useState('')
-  const [toastType, setToastType] = useState<'success'|'error'>('success')
+  const [sticky,         setSticky]         = useState(post?.sticky ?? false)
+  const [audioUrl,       setAudioUrl]       = useState(post?.meta?.dubai_audio_file ?? '')
+  const [audioUploading, setAudioUploading] = useState(false)
+  const [saving,         setSaving]         = useState(false)
+  const [toast,          setToast]          = useState('')
+  const [toastType,      setToastType]      = useState<'success'|'error'>('success')
 
   // Toast helper
   function showToast(msg: string, type: 'success'|'error' = 'success') {
@@ -64,6 +65,25 @@ export default function PostEditor({ post, categories }: Props) {
   function insertLink() {
     const url = prompt('URL do link:')
     if (url) fmt('createLink', url)
+  }
+
+  // Upload MP3 de áudio
+  async function handleAudioUpload(e: React.ChangeEvent<HTMLInputElement>) {
+    const file = e.target.files?.[0]
+    if (!file) return
+    setAudioUploading(true)
+    const fd = new FormData()
+    fd.append('file', file)
+    const res = await fetch('/api/admin/media', { method: 'POST', body: fd })
+    const data = await res.json()
+    setAudioUploading(false)
+    if (res.ok) {
+      setAudioUrl(data.source_url)
+      showToast('Áudio enviado!')
+    } else {
+      showToast(`Erro no upload: ${data.message ?? res.status}`, 'error')
+    }
+    e.target.value = ''
   }
 
   // Upload imagem destacada
@@ -306,19 +326,59 @@ export default function PostEditor({ post, categories }: Props) {
           <div className="adm-card adm-card-body">
             <div style={{ fontWeight: 700, marginBottom: 6, fontSize: 15 }}>Áudio do Artigo</div>
             <div style={{ fontSize: 12, color: 'var(--adm-muted)', marginBottom: 10, lineHeight: 1.5 }}>
-              Cole a URL do arquivo MP3. Aparece como player no início do artigo.
+              Faça upload de um arquivo MP3. Aparece como player no início do artigo.
             </div>
-            <input
-              type="url"
-              className="adm-input"
-              placeholder="https://exemplo.com/audio.mp3"
-              value={audioUrl}
-              onChange={e => setAudioUrl(e.target.value)}
-            />
-            {audioUrl && (
-              <div style={{ marginTop: 10 }}>
+
+            {audioUrl ? (
+              /* Arquivo já enviado — mostra player + botão remover */
+              <div style={{ display: 'flex', flexDirection: 'column', gap: 8 }}>
                 <audio controls src={audioUrl} style={{ width: '100%', height: 36 }} />
+                <div style={{ fontSize: 11, color: 'var(--adm-muted)', wordBreak: 'break-all' }}>{audioUrl}</div>
+                <div style={{ display: 'flex', gap: 8 }}>
+                  <label style={{ flex: 1, cursor: 'pointer' }}>
+                    <div className="adm-btn adm-btn-ghost adm-btn-sm" style={{ width: '100%', justifyContent: 'center' }}>
+                      {audioUploading ? 'Enviando…' : 'Substituir MP3'}
+                    </div>
+                    <input
+                      type="file"
+                      accept="audio/mpeg,audio/mp3,.mp3"
+                      style={{ display: 'none' }}
+                      onChange={handleAudioUpload}
+                      disabled={audioUploading}
+                    />
+                  </label>
+                  <button
+                    className="adm-btn adm-btn-ghost adm-btn-sm"
+                    onClick={() => setAudioUrl('')}
+                    style={{ color: '#e05252' }}
+                  >
+                    Remover
+                  </button>
+                </div>
               </div>
+            ) : (
+              /* Sem áudio — upload zone */
+              <label style={{ cursor: audioUploading ? 'wait' : 'pointer' }}>
+                <div
+                  className="adm-upload-zone"
+                  style={{ padding: '24px 16px' }}
+                  onClick={() => !audioUploading && document.getElementById('audio-upload')?.click()}
+                >
+                  <div className="adm-upload-icon">🎵</div>
+                  <div style={{ fontSize: 13, color: 'var(--adm-muted)' }}>
+                    {audioUploading ? 'Enviando áudio…' : 'Clique para selecionar o MP3'}
+                  </div>
+                  <div style={{ fontSize: 11, color: 'var(--adm-muted)', marginTop: 4 }}>MP3 · até 50 MB</div>
+                </div>
+                <input
+                  id="audio-upload"
+                  type="file"
+                  accept="audio/mpeg,audio/mp3,.mp3"
+                  style={{ display: 'none' }}
+                  onChange={handleAudioUpload}
+                  disabled={audioUploading}
+                />
+              </label>
             )}
           </div>
 
